@@ -104,6 +104,9 @@
          <a href="/commentaireSupprimer/{{ $commentaire->id }}" class="btn-icon">
             <i class="fas fa-trash-alt"></i>
         </a>
+        <a href="/commentairemodifier/{{$commentaire->id}}" class="btn-icon">
+            <i class="fas fa-edit"></i>
+        </a>
         <hr>
         <br>
         @endforeach

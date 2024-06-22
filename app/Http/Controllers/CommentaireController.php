@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Idee;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
 
@@ -47,17 +48,22 @@ class CommentaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Commentaire $commentaire)
+    public function edit(Commentaire $commentaire,$id)
     {
-        //
+        $commentaire= Commentaire::find($id);
+        return view('commentaires.modifiercommentaire',compact('commentaire'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Commentaire $commentaire)
-    {
-        //
+    { 
+        $commentaire= Commentaire::find($request->id);
+        $commentaire->libelle = $request->libelle;
+        $commentaire->nom_complet= $request->nom_complet;
+        $commentaire->update();
+        return redirect('/ideedetail/{id}');
     }
 
     /**
