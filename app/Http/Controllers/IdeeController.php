@@ -68,8 +68,10 @@ class IdeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Idee $idee)
+    public function destroy($id)
     {
-        //
+        $idee=Idee::find($id);
+        $idee->delete();
+        return back();
     }
 }
