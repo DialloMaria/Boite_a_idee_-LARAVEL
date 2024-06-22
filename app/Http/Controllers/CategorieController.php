@@ -10,10 +10,11 @@ class CategorieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function affichagecategorie(){
+        $categorie=Categorie::all();
+        return view ('/categories/affichercategorie',compact('categorie'));
     }
+
 
     /**
      * Show the form for creating a new resource.
