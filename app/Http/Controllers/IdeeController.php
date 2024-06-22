@@ -44,9 +44,11 @@ class IdeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Idee $idee)
+    public function show(Idee $idee,$id)
     {
-        //
+        $idee= Idee::findOrFail($id);
+        $categorie=Categorie::all();
+        return view('idees/showidee',compact('idee','categorie'));
     }
 
     /**

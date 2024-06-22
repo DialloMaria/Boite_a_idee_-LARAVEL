@@ -58,7 +58,7 @@
                             <h5 class="card-title">{{ $idee->libelle }}</h5>
                             <p class="card-text">{{ substr($idee->description, 0, 30) }}</p>
                             <p class="card-text">{{ ($idee->created_at) }}</p>
-                            <a href="#" class="btn btn-custom">Voir plus</a>
+                            <a href="/ideedetail/{{$idee->id}}" class="btn btn-custom">Voir plus</a>
                             <a href="/ideesupprimer/{{ $idee->id }}" class="btn-icon">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
