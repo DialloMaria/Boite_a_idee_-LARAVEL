@@ -33,4 +33,5 @@ Route::controller(IdeeController::class)->group(function (){
 //LES ROUTES POUR les COMMENTAIRES
 Route::controller(CommentaireController::class)->group(function (){
     Route::get('/commentaireAjoutTraitement{id}','store');
+    Route::get('/commentaireSupprimer/{id}' , 'destroy');
 });

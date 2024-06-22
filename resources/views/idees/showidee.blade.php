@@ -101,7 +101,9 @@
         <div style="margin-left: 200px" >
         </div>
          {{-- <div> <p>{{$commentaire->created_at}}</p></div>   --}}
-        
+         <a href="/commentaireSupprimer/{{ $commentaire->id }}" class="btn-icon">
+            <i class="fas fa-trash-alt"></i>
+        </a>
         <hr>
         <br>
         @endforeach

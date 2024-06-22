@@ -63,8 +63,10 @@ class CommentaireController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Commentaire $commentaire)
+    public function destroy($id)
     {
-        //
+        $commentaires=Commentaire::find($id);
+        $commentaires->delete();
+        return back();
     }
 }
