@@ -91,6 +91,28 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="mb-3">
+        <h1>Vos commentaire</h1>
+        
+        <form action="/commentaireAjoutTraitement" methode="POST" >
+
+            <input type="hidden" name="idee_id" value="{{ $idee->id }}">
+
+        @csrf
+        <label for="nom_complet" class="form-label">Votre Nom</label>
+        <input type="nom_complet" class="form-control" id="nom_complet" placeholder="nom_complet" name="nom_complet">
+      </div>
+      <div class="mb-3">
+        <label for="libelle" class="form-label">Laissez nous un message</label>
+        <textarea class="form-control" id="libelle" rows="3" name="libelle"></textarea>
+      </div>
+      <button class="btn btn-outline-primary" >Envoyer</button>
+        </form>
+      <br>
+      <br>
+      <br>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>

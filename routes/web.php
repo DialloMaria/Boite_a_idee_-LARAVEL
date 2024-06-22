@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeeController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommentaireController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -18,8 +19,7 @@ Route::controller(CategorieController::class)->group(function (){
 
 
 
-//LES ROUTES POUR IDEES
-
+//LES ROUTES POUR les IDEES
 Route::controller(IdeeController::class)->group(function (){
     Route::get('/ideeAjout' , 'create');
     Route::post('/ideeAjoutTraitement' , 'store');
@@ -28,5 +28,9 @@ Route::controller(IdeeController::class)->group(function (){
     Route::get('/ideemodifier/{id}' , 'edit');
     Route::post('/ideemodifierTraitement' , 'update')->name('ideemodifierTraitement');
     Route::get('/ideedetail/{id}' , 'show');
+});
 
+//LES ROUTES POUR les COMMENTAIRES
+Route::controller(CommentaireController::class)->group(function (){
+    Route::get('/commentaireAjoutTraitement','store');
 });

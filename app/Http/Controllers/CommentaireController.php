@@ -28,7 +28,12 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $commentaire = new Commentaire();
+        $commentaire->libelle = $request->libelle;
+        $commentaire->nom_complet= $request->nom_complet;
+        $commentaire->idee_id = $request->idee_id;
+        $commentaire->save();
+        return redirect()->back();
     }
 
     /**

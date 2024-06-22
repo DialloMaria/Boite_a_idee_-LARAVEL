@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Idee;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 
 class IdeeController extends Controller
@@ -46,9 +47,10 @@ class IdeeController extends Controller
      */
     public function show(Idee $idee,$id)
     {
+        $commentaires = Commentaire::all()->where('idee_id',$id);
         $idee= Idee::findOrFail($id);
         $categorie=Categorie::all();
-        return view('idees/showidee',compact('idee','categorie'));
+        return view('idees/showidee',compact('idee','categorie','commentaires'));
     }
 
     /**
