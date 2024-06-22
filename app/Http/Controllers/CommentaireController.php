@@ -63,7 +63,7 @@ class CommentaireController extends Controller
         $commentaire->libelle = $request->libelle;
         $commentaire->nom_complet= $request->nom_complet;
         $commentaire->update();
-        return redirect('/ideedetail/{id}');
+        return redirect('/ideeAffichage');
     }
 
     /**
