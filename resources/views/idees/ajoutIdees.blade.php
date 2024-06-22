@@ -38,27 +38,42 @@
             @csrf
             <div class="mb-3">
                 <label for="libelle" class="form-label">Libellé</label>
-                <input type="text" class="form-control" id="libelle" name="libelle" required>
+                <input type="text" class="form-control @error('libelle') is-invalid @enderror" id="libelle" name="libelle" value="{{ old('libelle') }}">
+                @error('libelle')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description') }}</textarea>
+                @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="nom_complet" class="form-label">Nom Complet</label>
-                <input type="text" class="form-control" id="nom_complet" name="nom_complet" required>
+                <input type="text" class="form-control @error('nom_complet') is-invalid @enderror" id="nom_complet" name="nom_complet" value="{{ old('nom_complet') }}">
+                @error('nom_complet')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="categorie_id" class="form-label">Catégorie</label>
-                <select class="form-select" id="categorie_id" name="categorie_id" required>
+                <select class="form-select @error('categorie_id') is-invalid @enderror" id="categorie_id" name="categorie_id">
                     @foreach($categorie as $categories)
-                        <option value="{{ $categories->id }}">{{ $categories->libelle }}</option>
+                        <option value="{{ $categories->id }}" {{ old('categorie_id') == $categories->id ? 'selected' : '' }}>{{ $categories->libelle }}</option>
                     @endforeach
                 </select>
+                @error('categorie_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-custom">Soumettre</button>
         </form>

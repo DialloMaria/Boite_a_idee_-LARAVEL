@@ -6,6 +6,7 @@ use App\Models\Idee;
 use App\Models\Categorie;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use App\Http\Requests\AjoutIdeeRequest;
 
 class IdeeController extends Controller
 {
@@ -31,7 +32,7 @@ class IdeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjoutIdeeRequest $request)
     {
         $categorie= new Idee();
         $categorie->libelle = $request->libelle;
