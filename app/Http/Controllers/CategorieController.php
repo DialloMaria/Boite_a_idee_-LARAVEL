@@ -20,7 +20,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('/categories/ajoutcategorie');
     }
 
     /**
@@ -28,7 +28,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorie= new Categorie();
+        $categorie->libelle = $request->libelle;
+        $categorie->save();
+        return redirect('/categorieAffichage');
     }
 
     /**
