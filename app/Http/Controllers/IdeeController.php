@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idee;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class IdeeController extends Controller
@@ -20,7 +21,8 @@ class IdeeController extends Controller
      */
     public function create()
     {
-        //
+        $categorie=Categorie::all();
+        return view('/idees/ajoutIdees',compact('categorie'));
     }
 
     /**
@@ -28,7 +30,15 @@ class IdeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorie= new Idee();
+        $categorie->libelle = $request->libelle;
+        $categorie->description = $request->description;
+        $categorie->nom_complet = $request->nom_complet;
+        $categorie->email = $request->email;
+        $categorie->categorie_id = $request->categorie_id;
+        $categorie->categorie_id = $request->categorie_id;
+        $categorie->save();
+        return redirect('/index');
     }
 
     /**
