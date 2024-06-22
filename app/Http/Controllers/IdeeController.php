@@ -15,7 +15,8 @@ class IdeeController extends Controller
     public function index()
     {
         $idees=Idee::all();
-        return view('/idees/index', compact('idees'));
+        $commentaires = Commentaire::all()->where('idee_id');
+        return view('/idees/index', compact('idees','commentaires'));
     }
 
     /**

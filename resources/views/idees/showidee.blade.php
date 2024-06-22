@@ -91,6 +91,21 @@
             </div>
         </div>
     </div>
+    <div class="p-3 mb-3 bg-light rounded">
+        <h4 class="font-italic">Commentaire</h4>
+        <br>
+        @foreach ($commentaires as $commentaire )
+        <p class="mb-0"> <strong>{{$commentaire->nom_complet}}</strong> <br>
+            {{$commentaire->libelle}}
+        </p>  
+        <div style="margin-left: 200px" >
+        </div>
+         {{-- <div> <p>{{$commentaire->created_at}}</p></div>   --}}
+        
+        <hr>
+        <br>
+        @endforeach
+    </div>
     <div class="container">
         <div class="mb-3">
         <h1>Vos commentaire</h1>
