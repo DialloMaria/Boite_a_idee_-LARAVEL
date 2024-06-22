@@ -52,9 +52,11 @@ class IdeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Idee $idee)
+    public function edit(Idee $idee,$id)
     {
-        //
+        $idee= Idee::find($id);
+        $categorie=Categorie::all();
+        return view('/idees/modifieridee',compact('categorie','idee'));
     }
 
     /**
@@ -62,7 +64,15 @@ class IdeeController extends Controller
      */
     public function update(Request $request, Idee $idee)
     {
-        //
+        $idee = Idee::find($request->id);
+        $idee = Idee::find($idee->id);
+        $idee->libelle = $request->libelle;
+        $idee->description = $request->description;
+        $idee->nom_complet = $request->nom_complet;
+        $idee->email = $request->email;
+        $idee->categorie_id = $request->categorie_id;
+        $idee->update();
+        return redirect('/ideeAffichage');
     }
 
     /**

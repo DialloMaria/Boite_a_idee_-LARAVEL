@@ -25,4 +25,6 @@ Route::controller(IdeeController::class)->group(function (){
     Route::post('/ideeAjoutTraitement' , 'store');
     Route::get('/ideeAffichage' , 'index');
     Route::get('/ideesupprimer/{id}' , 'destroy');
+    Route::get('/ideemodifier/{id}' , 'edit');
+    Route::post('/ideemodifierTraitement' , 'update')->name('ideemodifierTraitement');
 });

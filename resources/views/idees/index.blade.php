@@ -62,6 +62,9 @@
                             <a href="/ideesupprimer/{{ $idee->id }}" class="btn-icon">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
+                            <a href="/ideemodifier/{{ $idee->id }}" class="btn-icon">
+                                <i class="fas fa-edit"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
