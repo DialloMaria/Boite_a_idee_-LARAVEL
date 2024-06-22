@@ -13,7 +13,8 @@ class IdeeController extends Controller
      */
     public function index()
     {
-        //
+        $idees=Idee::all();
+        return view('/idees/index', compact('idees'));
     }
 
     /**
@@ -36,9 +37,8 @@ class IdeeController extends Controller
         $categorie->nom_complet = $request->nom_complet;
         $categorie->email = $request->email;
         $categorie->categorie_id = $request->categorie_id;
-        $categorie->categorie_id = $request->categorie_id;
         $categorie->save();
-        return redirect('/index');
+        return redirect('/ideeAffichage');
     }
 
     /**

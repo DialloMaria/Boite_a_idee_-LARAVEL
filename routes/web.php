@@ -23,4 +23,5 @@ Route::controller(CategorieController::class)->group(function (){
 Route::controller(IdeeController::class)->group(function (){
     Route::get('/ideeAjout' , 'create');
     Route::post('/ideeAjoutTraitement' , 'store');
+    Route::get('/ideeAffichage' , 'index');
 });
