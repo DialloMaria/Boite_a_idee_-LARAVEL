@@ -54,7 +54,7 @@
 <body>
     <div class="container">
         <div class="form-header">
-            <h2>Inscription</h2>
+            <h2>Connexion</h2>
             <p>Rejoignez notre communauté et commencez votre aventure!</p>
         </div>
         <form action="{{ route('login.save') }}" method="POST">
@@ -63,21 +63,30 @@
                 <label for="email" class="form-label">Email</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-envelope"></i></div>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" >
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-lock"></i></div>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Mot de passe" >
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
-                <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-lock"></i></div>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmer le mot de passe" required>
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" placeholder="Confirmer le mot de passe" >
+                @error('password_confirmation')
+                    <div class="invalid-feedback">Confirmez votre mot de passe.</div>
+                @enderror
                 </div>
             </div>
             <button type="submit" class="btn btn-custom">Se connecter</button>

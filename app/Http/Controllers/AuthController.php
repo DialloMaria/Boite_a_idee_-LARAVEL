@@ -35,6 +35,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\ConnexionRequest;
+
 use App\Http\Requests\InscriptionRequest;
 
 use Illuminate\Http\Request;
@@ -72,7 +74,7 @@ class AuthController extends Controller
         return view('auths.login');
     }
 
-    public function loginSave(Request $request)
+    public function loginSave(ConnexionRequest $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',

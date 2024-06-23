@@ -95,7 +95,8 @@
                     <div class="input-group-text"><i class="fa fa-lock"></i></div>
                     <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" placeholder="Confirmer le mot de passe" >
                 @error('password_confirmation')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">Confirmez votre mot de passe.
+                    </div>
                 @enderror
                 </div>
             </div>
