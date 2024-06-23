@@ -23,17 +23,19 @@ class InscriptionRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required|string|min:5|confirmed',
         ];
     }
     public function messages(){
         return[
-            'nom.required' => 'Le nom est obligatoire.',
-            'prenom.required' => 'Le prénom est obligatoire.',
+            'name.required' => 'Le nom est obligatoire.',
             'email.required' => 'L\'email est obligatoire.',
-            'mot_de_passe.required' => 'Le mot de passe est obligatoire.',
+            'password.required' => 'Le mot de passe est obligatoire.',
+            'password.min' => 'Le mot de passe doit contenir au minimum 5 caracteres.',
+            'password_confirmation.required' => 'Confirmez votre mot de passe.',
+            
         ];
     }
 }

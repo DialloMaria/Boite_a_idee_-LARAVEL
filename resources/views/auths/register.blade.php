@@ -63,28 +63,40 @@
                 <label for="name" class="form-label">Nom d'utilisateur</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-user"></i></div>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom" required>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nom" >
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-envelope"></i></div>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" >
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-lock"></i></div>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Mot de passe" >
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa fa-lock"></i></div>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirmer le mot de passe" required>
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" placeholder="Confirmer le mot de passe" >
+                @error('password_confirmation')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                 </div>
             </div>
             <button type="submit" class="btn btn-custom">S'inscrire</button>

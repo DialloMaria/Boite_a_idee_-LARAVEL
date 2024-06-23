@@ -35,6 +35,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\InscriptionRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -47,13 +49,13 @@ class AuthController extends Controller
         return view('auths.register');
     }
 
-    public function registerSave(Request $request)
+    public function registerSave(InscriptionRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:4|confirmed',
+        // ]);
        
         User::create([ 
             'name' => $request->name,
