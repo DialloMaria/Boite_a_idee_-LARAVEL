@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IdeeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
@@ -39,3 +40,13 @@ Route::controller(CommentaireController::class)->group(function (){
     Route::get('/commentairemodifier/{id}' , 'edit');
     Route::post('/commentairemodifierTraitement' , 'update')->name('commentairemodifierTraitement');
 });
+
+
+//LES ROUTES POUR l'AUTHENTIFICATION
+Route::controller(AuthController::class)->group(function (){
+    Route::get('/register','register');
+    Route::post('register/save', 'registerSave')->name('register.save');
+   Route::get('/login', 'login');
+   Route::post('/login/save', 'loginSave')->name('login.save');
+});
+
