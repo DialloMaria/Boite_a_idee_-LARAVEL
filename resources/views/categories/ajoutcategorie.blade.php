@@ -63,7 +63,10 @@
             @csrf
             <div class="mb-3">
                 <label for="libelle" class="form-label">Libellé</label>
-                <input type="text" class="form-control" id="libelle" name="libelle" placeholder="Entrez le libellé" required>
+                <input type="text" class="form-control @error('libelle') is-invalid @enderror" id="libelle" name="libelle" placeholder="Entrez le libellé" value="{{ old('libelle') }}">
+                @error('libelle')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>

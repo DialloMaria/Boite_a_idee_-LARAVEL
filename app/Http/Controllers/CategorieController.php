@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Http\Requests\AjoutCategorieRequest;
 
 class CategorieController extends Controller
 {
@@ -27,7 +28,7 @@ class CategorieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjoutCategorieRequest $request)
     {
         $categorie= new Categorie();
         $categorie->libelle = $request->libelle;
