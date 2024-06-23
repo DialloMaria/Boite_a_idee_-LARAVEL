@@ -48,6 +48,11 @@
     </style>
 </head>
 <body>
+    {{ auth()->user()->name }}
+    <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
+        @csrf
+        <button type="submit" class="btn btn-link">Déconnexion</button>
+    </form>
     <div class="container">
         <h2 class="text-center mb-4">Liste des Idées</h2>
         <div class="row">
