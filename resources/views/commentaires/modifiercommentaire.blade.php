@@ -30,13 +30,22 @@
 
             <input type="hidden" name="id" value="{{ $commentaire->id }}">
 
-        <label for="nom_complet" class="form-label">Votre Nom</label>
-        <input type="nom_complet" class="form-control" id="nom_complet" placeholder="nom_complet" name="nom_complet"  value="{{ $commentaire->nom_complet}}">
-      </div>
-      <div class="mb-3">
-        <label for="libelle" class="form-label">Laissez nous un message</label>
-        <textarea class="form-control" id="libelle" rows="3" name="libelle">{{ $commentaire->libelle}}</textarea>
-      </div>
+
+            <div class="mb-3">
+              <label for="nom_complet" class="form-label">Votre Nom</label>
+              <input type="text" class="form-control @error('nom_complet') is-invalid @enderror" id="nom_complet" placeholder="nom_complet" name="nom_complet" value="{{ old('nom_complet', $commentaire->nom_complet) }}">
+              @error('nom_complet')
+                  <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+          </div>
+
+          <div class="mb-3">
+              <label for="libelle" class="form-label">Laissez-nous un message</label>
+              <textarea class="form-control @error('libelle') is-invalid @enderror" id="libelle" rows="3" name="libelle">{{ old('libelle', $commentaire->libelle) }}</textarea>
+              @error('libelle')
+                  <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+          </div>
       <button class="btn btn-outline-primary" >Modifier</button>
         </form>
       <br>
