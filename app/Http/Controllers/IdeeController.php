@@ -6,6 +6,8 @@ use App\Models\Idee;
 use App\Models\Categorie;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use App\Http\Requests\AjoutIdeeRequest;
+use App\Http\Requests\ModifierIdeeRequest;
 
 class IdeeController extends Controller
 {
@@ -31,7 +33,7 @@ class IdeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjoutIdeeRequest $request)
     {
         $categorie= new Idee();
         $categorie->libelle = $request->libelle;
@@ -67,7 +69,7 @@ class IdeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Idee $idee)
+    public function update(ModifierIdeeRequest $request, Idee $idee)
     {
         $idee = Idee::find($request->id);
         $idee = Idee::find($idee->id);

@@ -15,6 +15,8 @@ Route::controller(CategorieController::class)->group(function (){
     Route::post('/categorieAjoutTraitement',  'store');
     Route::get('/categorieAffichage' ,  'affichagecategorie');
     Route::get('/categorieSupprimer/{id}' , 'destroy');
+    Route::get('/categoriemodifier/{id}' , 'edit');
+    Route::post('/categoriemodifierTraitement' , 'update')->name('categoriemodifierTraitement');
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Http\Requests\AjoutCategorieRequest;
 
 class CategorieController extends Controller
 {
@@ -27,7 +28,7 @@ class CategorieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjoutCategorieRequest $request)
     {
         $categorie= new Categorie();
         $categorie->libelle = $request->libelle;
@@ -46,9 +47,10 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Categorie $categorie,$id)
     {
-        //
+        $categorie= Categorie::find($id);
+        return view('categories.modifiercategorie', compact('categorie'));
     }
 
     /**
@@ -56,7 +58,11 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
+        
+        $categorie= Categorie::find($request->id);
+        $categorie->libelle = $request->libelle;
+        $categorie->update();
+        return redirect('/categorieAffichage');
     }
 
     /**

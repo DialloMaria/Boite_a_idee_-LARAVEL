@@ -58,17 +58,18 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Ajouter une Categorie</h2>
-        <form action="/categorieAjoutTraitement" method="POST">
+        <h2>Modifier une Categorie</h2>
+        <form action="/categoriemodifierTraitement" method="POST">
             @csrf
+            <input type="hidden" name="id" value="{{ $categorie->id }}">
             <div class="mb-3">
                 <label for="libelle" class="form-label">Libellé</label>
-                <input type="text" class="form-control @error('libelle') is-invalid @enderror" id="libelle" name="libelle" placeholder="Entrez le libellé" value="{{ old('libelle') }}">
+                <input type="text" class="form-control @error('libelle') is-invalid @enderror" id="libelle" name="libelle" value="{{ old('libelle', $categorie->libelle) }}" >
                 @error('libelle')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
 
