@@ -23,14 +23,18 @@ Route::controller(CategorieController::class)->group(function (){
 
 
 //LES ROUTES POUR les IDEES
-Route::controller(IdeeController::class)->group(function (){
-    Route::get('/ideeAjout' , 'create');
-    Route::post('/ideeAjoutTraitement' , 'store');
-    Route::get('/ideeAffichage' , 'index');
+Route::middleware('admin')->controller(IdeeController::class)->group(function (){
     Route::get('/ideesupprimer/{id}' , 'destroy');
     Route::get('/ideemodifier/{id}' , 'edit');
     Route::post('/ideemodifierTraitement' , 'update')->name('ideemodifierTraitement');
     Route::get('/ideedetail/{id}' , 'show');
+    Route::get('/ideeAffichage' , 'index');
+});
+
+Route::controller(IdeeController::class)->group(function (){
+    Route::get('/ideeAjout' , 'create');
+    Route::post('/ideeAjoutTraitement' , 'store');
+    Route::get('/ideeAffichage' , 'index');
 });
 
 //LES ROUTES POUR les COMMENTAIRES

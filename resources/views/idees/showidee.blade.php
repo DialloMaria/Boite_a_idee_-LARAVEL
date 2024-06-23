@@ -84,10 +84,10 @@
                         </span>
                     </p>
                 </div>
-                @if(Auth::check() && Auth::user()->isAdmin())
+                {{-- @if(Auth::check() && Auth::user()->isAdmin())
                     <a href="#" class="btn btn-custom">Approuver</a>
                     <a href="#" class="btn btn-custom">Refuser</a>
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>
