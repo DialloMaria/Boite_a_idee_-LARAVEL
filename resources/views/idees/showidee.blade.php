@@ -120,13 +120,21 @@
             <input type="hidden" name="idee_id" value="{{ $idee->id }}">
 
         @csrf
-        <label for="nom_complet" class="form-label">Votre Nom</label>
-        <input type="nom_complet" class="form-control" id="nom_complet" placeholder="nom_complet" name="nom_complet">
-      </div>
-      <div class="mb-3">
-        <label for="libelle" class="form-label">Laissez nous un message</label>
-        <textarea class="form-control" id="libelle" rows="3" name="libelle"></textarea>
-      </div>
+        <div class="mb-3">
+            <label for="nom_complet" class="form-label">Votre Nom</label>
+            <input type="text" class="form-control @error('nom_complet') is-invalid @enderror" id="nom_complet" placeholder="nom_complet" name="nom_complet" >
+            @error('nom_complet')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="libelle" class="form-label">Laissez-nous un message</label>
+            <textarea class="form-control @error('libelle') is-invalid @enderror" id="libelle" rows="3" name="libelle"></textarea>
+            @error('libelle')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
       <button class="btn btn-outline-primary" >Envoyer</button>
         </form>
       <br>

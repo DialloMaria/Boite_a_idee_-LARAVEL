@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Idee;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use App\Http\Requests\AjoutCommentaireeRequest;
 use App\Http\Requests\ModifierCommentaireeRequest;
 
 class CommentaireController extends Controller
@@ -28,7 +29,7 @@ class CommentaireController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjoutCommentaireeRequest $request)
     {
         $commentaire = new Commentaire();
         $commentaire->libelle = $request->libelle;
