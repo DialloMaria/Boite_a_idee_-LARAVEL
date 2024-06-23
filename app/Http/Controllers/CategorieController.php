@@ -47,9 +47,10 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Categorie $categorie,$id)
     {
-        //
+        $categorie= Categorie::find($id);
+        return view('categories.modifiercategorie', compact('categorie'));
     }
 
     /**
@@ -57,7 +58,11 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
+        
+        $categorie= Categorie::find($request->id);
+        $categorie->libelle = $request->libelle;
+        $categorie->update();
+        return redirect('/categorieAffichage');
     }
 
     /**
