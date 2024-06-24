@@ -79,18 +79,47 @@
                     <p><span>Catégorie :</span> {{ $idee->categorie->libelle }}</p>
                     <p><span>Date de Création :</span> {{ $idee->created_at->format('d/m/Y') }}</p>
                     <p><span>Statut :</span> 
-                        <span class="badge {{ $idee->status == 'approuvee' ? 'bg-success' : 'bg-danger' }}">
+                        {{-- <span class="badge {{ $idee->status == 'approuvee' ? 'bg-success' : 'bg-danger' }}"> --}}
                             {{ ucfirst($idee->status) }}
-                        </span>
+                        {{-- </span> --}}
                     </p>
+                    <a href="/modifierStatus/{{ $idee->id }}" class="btn-icon">
+                        <i class="fas fa-edit"></i>
+                    </a>
                 </div>
-                @if(Auth::check() && Auth::user()->isAdmin())
+                {{-- @if(Auth::check() && Auth::user()->isAdmin())
                     <a href="#" class="btn btn-custom">Approuver</a>
                     <a href="#" class="btn btn-custom">Refuser</a>
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>
+    {{-- @if(Auth::check() && Auth::user()->isAdmin())
+    <div class="mb-3">
+        <label for="status" class="form-label">Statut</label>
+        <select class="form-control" id="status" name="status">
+            <option value="approuvee">Approuvée</option>
+            <option value="refusee">Refusée</option>
+        </select>
+    </div>
+@endif --}}
+
+@if(Auth::check() && Auth::user()->role === 'admin')
+<form action="{{ route('ideemodifierTraitement')}}" method="POST">
+    @csrf
+    <div class="mb-3">
+        <label for="status" class="form-label">Statut</label>
+        <select class="form-select" id="status" name="status">
+            <option value="approuvee" {{ $idee->status == 'approuvee' ? 'selected' : '' }}>Approuvée</option>
+            <option value="refusee" {{ $idee->status == 'refusee' ? 'selected' : '' }}>Refusée</option>
+        </select>
+        @error('status')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <button type="submit" class="btn btn-primary">Mettre à jour le statut</button>
+</form>
+@endif
     <div class="p-3 mb-3 bg-light rounded">
         <h4 class="font-italic">Commentaire</h4>
         <br>

@@ -22,16 +22,16 @@ class ConnexionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:5|confirmed',
-            'password_confirmation' => 'required|string|min:5|confirmed',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:5',
         ];
     }
-    public function messages(){
-        return[
+
+    public function messages()
+    {
+        return [
             'email.required' => 'L\'email est obligatoire.',
             'password.required' => 'Le mot de passe est obligatoire.',
-            'password.min' => 'Le mot de passe doit contenir au minimum 5 caracteres.',
         ];
     }
 }

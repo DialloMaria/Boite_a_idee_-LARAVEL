@@ -6,6 +6,7 @@ use App\Models\Idee;
 use App\Models\Categorie;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AjoutIdeeRequest;
 use App\Http\Requests\ModifierIdeeRequest;
 
@@ -14,6 +15,21 @@ class IdeeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function updateStatus(Request $request)
+    {
+        // Valider et mettre à jour le statut de l'idée...
+
+        // Récupérer l'idée mise à jour
+        $idee = Idee::findOrFail($request->id);
+
+        // Envoyer l'e-mail à l'utilisateur
+        Mail::to($idee->user->email)->send(new IdeeStatusUpdateNotification($idee));
+
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'Statut de l\'idée mis à jour et notification envoyée.');
+    }   
+
     public function index()
     {
         $idees=Idee::all();
@@ -35,6 +51,7 @@ class IdeeController extends Controller
      */
     public function store(AjoutIdeeRequest $request)
     {
+
         $categorie= new Idee();
         $categorie->libelle = $request->libelle;
         $categorie->description = $request->description;
@@ -66,6 +83,23 @@ class IdeeController extends Controller
         return view('/idees/modifieridee',compact('categorie','idee'));
     }
 
+    public function editStatus(Idee $idee,$id)
+    {
+        $idee= Idee::find($id);
+        return view('/idees/modifierStatus',compact('idee'));
+    }
+    // public function updateStatus(Request $request,$id)
+    // {
+    //     $request->validate([
+    //         'status' => 'required|in:approuvee,refusee', // Validation du statut
+    //     ]);
+
+    //     $idee = Idee::findOrFail($id);
+    //     $idee->status = $request->status;
+    //     $idee->update();
+    //     return redirect('/ideeAffichage');
+    // }
+   
     /**
      * Update the specified resource in storage.
      */
