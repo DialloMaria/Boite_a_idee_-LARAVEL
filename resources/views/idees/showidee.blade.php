@@ -141,17 +141,17 @@
                 <p>{{ $commentaire->libelle }}</p>
                 <div class="comment-actions">
                     <a href="/commentaireSupprimer/{{ $commentaire->id }}" class="btn-icon">
-                        <i class="fas fa-trash-alt"></i> Supprimer
+                        <i class="fas fa-trash-alt"></i>
                     </a>
                     <a href="/commentairemodifier/{{ $commentaire->id }}" class="btn-icon">
-                        <i class="fas fa-edit"></i> Modifier
+                        <i class="fas fa-edit"></i>
                     </a>
                 </div>
             </div>
             @endforeach
 
             <form action="/commentaireAjoutTraitement" methode="POST" >
-
+                <h3>Laissez nous un mot</h3>
                 <input type="hidden" name="idee_id" value="{{ $idee->id }}">
     
             @csrf
