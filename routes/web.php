@@ -29,7 +29,11 @@ Route::middleware('admin')->controller(IdeeController::class)->group(function ()
     Route::post('/ideemodifierTraitement' , 'update')->name('ideemodifierTraitement');
     Route::get('/ideedetail/{id}' , 'show');
     Route::get('/ideeAffichage' , 'index');
-});
+
+    Route::get('/modifierStatus/{id}' , 'editStatus');
+    Route::post('/modifierStatusTraitement' , 'updateStatus')->name('modifierStatusTraitement');
+    
+}); 
 
 Route::controller(IdeeController::class)->group(function (){
     Route::get('/ideeAjout' , 'create');
