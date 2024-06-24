@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idee;
+use App\Mail\IdeeValidee;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+
+use App\Mail\IdeenonValidee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AjoutIdeeRequest;
@@ -125,4 +128,30 @@ class IdeeController extends Controller
         $idee->delete();
         return back();
     }
+
+    public function action(Request $request, $id, $action)
+{
+    $idee = Idee::find($id);
+
+    if (!$idee) {
+        return back()->with('error', 'Idée non trouvée');
+    }
+
+    switch ($action) {
+        case 'approuvee':
+            $idee->status = 'approuvee';
+            $idee->save();
+            Mail::to($idee->email)->send(new IdeeValidee($idee));
+            return back()->with('success', 'Idée approuvée et email envoyé');
+            break;
+
+        case 'refusee':
+
+            $idee->status = 'refusee';
+            $idee->save();
+            Mail::to($idee->email)->send(new IdeenonValidee($idee));
+            return back()->with('success', 'Idée non approuvée et email envoyé');
+            break;
+    }
+}
 }

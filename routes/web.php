@@ -30,6 +30,7 @@ Route::middleware('admin')->controller(IdeeController::class)->group(function ()
     Route::get('/ideedetail/{id}' , 'show');
     Route::get('/ideeAffichage' , 'index');
 
+    
     Route::get('/modifierStatus/{id}' , 'editStatus');
     Route::post('/modifierStatusTraitement' , 'updateStatus')->name('modifierStatusTraitement');
     
@@ -40,6 +41,14 @@ Route::controller(IdeeController::class)->group(function (){
     Route::post('/ideeAjoutTraitement' , 'store');
     Route::get('/ideeAffichage' , 'index');
 });
+
+// route pour traiter l'action sur les idées
+Route::post('/idee/{id}/{action}', [IdeeController::class, 'action'])->name('idee.action');
+
+// route pour mettre à jour l'action d'approuver ou non
+Route::post('idee/updateStatus/{id}/{action}', [IdeeController::class, 'updateStatus'])->name('candidatures.updateStatus');
+Route::post('/idee/{id}/approuvee', [IdeeController::class, 'updateStatus'])->name('idee.approuvee');
+Route::post('/idee/{id}/nonapprouvee', [IdeeController::class, 'updateStatus'])->name('idee.nonapprouvee');
 
 //LES ROUTES POUR les COMMENTAIRES
 Route::controller(CommentaireController::class)->group(function (){
