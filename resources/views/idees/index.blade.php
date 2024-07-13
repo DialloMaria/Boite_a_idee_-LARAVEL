@@ -130,6 +130,8 @@
             background-color: #343a40;
             color: white;
             padding: 20px 0;
+            bottom: 0;
+         
         }
         footer a {
             color: #ff6137;
@@ -160,18 +162,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Accueil</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Catégories</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Idées</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="/ideeAjout">Ajouter une Idée</a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    @auth
+                    {{-- @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ auth()->user()->name }}
@@ -185,14 +187,14 @@
                                 </li>
                             </ul>
                         </li>
-                    @else
-                        <li class="nav-item">
+                    @else --}}
+                        {{-- <li class="nav-item">
                             <a class="nav-link btn-signup" href="#">S'inscrire</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link btn-login" href="#">Se connecter</a>
+                            <a class="nav-link btn-login" href="/login">Se connecter</a>
                         </li>
-                    @endauth
+                    {{-- @endauth --}}
                 </ul>
             </div>
         </div>
@@ -220,18 +222,18 @@
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-header-custom"></div>
-                        {{-- <img src="https://source.unsplash.com/random/300x200?sig={{ $idee->id }}" class="card-img-top" alt="{{ $idee->libelle }}"> --}}
+                        {{-- <img src="{{ $idee->image }}={{ $idee->id }}" class="card-img-top" alt="{{ $idee->libelle }}"> --}}
                         <div class="card-body">
                             <h5 class="card-title">{{ $idee->libelle }}</h5>
                             <p class="card-text">{{ substr($idee->description, 0, 100) }}...</p>
-                            <p class="card-text"><small class="text-muted">{{ $idee->created_at->format('d M Y') }}</small></p>
+                            {{-- <p class="card-text"><small class="text-muted">{{ $idee->created_at->format('d M Y') }}</small></p> --}}
                             <a href="/ideedetail/{{$idee->id}}" class="btn btn-custom">Voir plus</a>
-                            <a href="/ideesupprimer/{{ $idee->id }}" class="btn-icon">
+                            {{-- <a href="/ideesupprimer/{{ $idee->id }}" class="btn-icon">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                             <a href="/ideemodifier/{{ $idee->id }}" class="btn-icon">
                                 <i class="fas fa-edit"></i>
-                            </a>
+                            </a> --}}
                         </div
                     </div>
                 </div>

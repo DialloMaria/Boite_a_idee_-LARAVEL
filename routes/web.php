@@ -23,23 +23,23 @@ Route::controller(CategorieController::class)->group(function (){
 
 
 //LES ROUTES POUR les IDEES
-Route::middleware('admin')->controller(IdeeController::class)->group(function (){
+Route::middleware('auth')->controller(IdeeController::class)->group(function (){
     Route::get('/ideesupprimer/{id}' , 'destroy');
     Route::get('/ideemodifier/{id}' , 'edit');
     Route::post('/ideemodifierTraitement' , 'update')->name('ideemodifierTraitement');
     Route::get('/ideedetail/{id}' , 'show');
-    Route::get('/ideeAffichage' , 'index');
-
-    
+    Route::get('/dashboard' , 'dashboard');
+    Route::get('/ListeIdee' , 'ListeIdee');
     Route::get('/modifierStatus/{id}' , 'editStatus');
     Route::post('/modifierStatusTraitement' , 'updateStatus')->name('modifierStatusTraitement');
-    
 }); 
 
 Route::controller(IdeeController::class)->group(function (){
     Route::get('/ideeAjout' , 'create');
     Route::post('/ideeAjoutTraitement' , 'store');
     Route::get('/ideeAffichage' , 'index');
+    Route::get('/ideedetail/{id}' , 'show');
+
 });
 
 // route pour traiter l'action sur les idées

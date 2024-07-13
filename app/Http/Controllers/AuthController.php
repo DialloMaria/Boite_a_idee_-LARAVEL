@@ -18,11 +18,16 @@ class AuthController extends Controller
 
     public function registerSave(InscriptionRequest $request)
     {
+        // Validation supplémentaire pour le rôle
+        $request->validate([
+            'role' => 'required|in:admin,super_admin',
+        ]);
         User::create([ 
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin', // Modifiez le rôle selon vos besoins
+            // 'role' => 'admin','super_admin', // Modifiez le rôle selon vos besoins
+            'role' => $request->role, // Attribuer le rôle spécifié
         ]); 
 
         return redirect('/login')->with('success', 'Inscription réussie!');
@@ -42,8 +47,8 @@ class AuthController extends Controller
         // dd($credentials); // Débogage ici
         if (Auth::attempt($credentials)) {
             // L'utilisateur est authentifié
-            if (Auth::user()->role === 'admin') {
-                return redirect('/ideeAffichage')->with('success', 'Connexion réussie en tant qu\'admin');
+            if (Auth::user()->role === 'admin' || Auth::user()->role === 'super_admin' ) {
+                return redirect('/dashboard')->with('success', 'Connexion réussie en tant qu\'admin');
             } else {
                 return redirect('/index')->with('success', 'Connexion réussie');
             }

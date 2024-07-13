@@ -11,6 +11,7 @@ use App\Mail\IdeenonValidee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AjoutIdeeRequest;
+use Spatie\Permission\Models\Permission;
 use App\Http\Requests\ModifierIdeeRequest;
 
 class IdeeController extends Controller
@@ -33,13 +34,29 @@ class IdeeController extends Controller
         return redirect()->back()->with('success', 'Statut de l\'idée mis à jour et notification envoyée.');
     }   
 
+    public function dashboard()
+    {
+        
+        $idees=Idee::all();
+        $commentaires = Commentaire::all()->where('idee_id');
+        return view('/idees/dashbord', compact('idees','commentaires'));
+    }
+
     public function index()
     {
+        
+        
+ 
         $idees=Idee::all();
         $commentaires = Commentaire::all()->where('idee_id');
         return view('/idees/index', compact('idees','commentaires'));
     }
-
+    public function ListeIdee()
+    {
+        $idees=Idee::all();
+        $commentaires = Commentaire::all()->where('idee_id');
+        return view('/idees/listeidee', compact('idees','commentaires'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -60,6 +77,7 @@ class IdeeController extends Controller
         $categorie->description = $request->description;
         $categorie->nom_complet = $request->nom_complet;
         $categorie->email = $request->email;
+        $categorie->image = $request->image;
         $categorie->categorie_id = $request->categorie_id;
         $categorie->save();
         return redirect('/ideeAffichage');
